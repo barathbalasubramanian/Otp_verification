@@ -5,11 +5,13 @@ const {sendOTP , verifyOTP } = require('./otp_verification/otp_verify.js')
 const app = express();
 const send = sendOTP();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
 const PORT = 8000;
 
 app.get('/' ,(req,res) => {
-    res.sendFile(__dirname + "/views/index.html");
+    res.render("index");
 });
 
 app.post('/', (req, res) => {
